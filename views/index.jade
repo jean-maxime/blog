@@ -3,3 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  each user in users
+    p #{user.id}
+    p #{user.email}
+    p #{user.login}

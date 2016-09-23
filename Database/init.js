@@ -7,7 +7,7 @@ let knex = require('knex')({
         user: 'root',
         password: '',
         database: 'blog',
-        charset: 'utf-8'
+        charset: 'utf8'
     }
 });
 let Bookshelf = require('bookshelf')(knex);
