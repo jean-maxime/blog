@@ -1,10 +1,11 @@
 let express = require('express');
 let router = express.Router();
 let Category = require('../Database/Models/Category');
+let categoryService = require('../Service/Category');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    Category.fetchAll()
+    categoryService.findAll()
         .then(function (categories) {
             res.json(categories);
         })
@@ -15,8 +16,8 @@ router.get('/', function(req, res, next) {
 
 // GET user by id
 router.get('/:id', function (req, res, next) {
-    let CategoyId = req.params.id;
-    Category.where('id', CategoyId).fetch()
+    let idCategory = req.params.id;
+    categoryService.findById(idCategory)
         .then(function(category) {
             res.json(category);
         })

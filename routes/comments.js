@@ -1,10 +1,11 @@
 let express = require('express');
 let router = express.Router();
 let Comment = require('../Database/Models/Comment');
+let commentService = require('../Service/Comment');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    Comment.fetchAll()
+    commentService.findAll()
         .then(function (comments) {
             res.json(comments);
         })
@@ -15,8 +16,8 @@ router.get('/', function(req, res, next) {
 
 // GET user by id
 router.get('/:id', function (req, res, next) {
-    let CommentId = req.params.id;
-    Comment.where('id', CommentId).fetch()
+    let idComment = req.params.id;
+    commentService.findById(idComment)
         .then(function(comment) {
             res.json(comment);
         })
