@@ -3,7 +3,7 @@ let router = express.Router();
 let User = require('../Database/Models/User');
 let userService = require('../Service/User');
 
-/* GET users listing. */
+// GET users listing
 router.get('/', function(req, res, next) {
   userService.findAll()
     .then(function (users) {
@@ -24,6 +24,18 @@ router.get('/:id', function (req, res, next) {
       .catch(function(error) {
         res.json(error)
       })
+});
+
+// DELETE user by id
+router.delete('/:id', function (req, res, next) {
+    let idUser = req.params.id;
+    userService.deleteById(idUser)
+        .then(function() {
+            res.json(true)
+        })
+        .catch(function() {
+            res.json(false)
+        })
 });
 
 module.exports = router;

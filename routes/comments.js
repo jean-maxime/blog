@@ -3,7 +3,7 @@ let router = express.Router();
 let Comment = require('../Database/Models/Comment');
 let commentService = require('../Service/Comment');
 
-/* GET users listing. */
+// GET comments listing
 router.get('/', function(req, res, next) {
     commentService.findAll()
         .then(function (comments) {
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         })
 });
 
-// GET user by id
+// GET comment by id
 router.get('/:id', function (req, res, next) {
     let idComment = req.params.id;
     commentService.findById(idComment)
@@ -23,6 +23,18 @@ router.get('/:id', function (req, res, next) {
         })
         .catch(function(error) {
             res.json(error)
+        })
+});
+
+// DELETE comment by id
+router.delete('/:id', function (req, res, next) {
+    let idComment = req.params.id;
+    commentService.deleteById(idComment)
+        .then(function() {
+            res.json(true)
+        })
+        .catch(function() {
+            res.json(false)
         })
 });
 

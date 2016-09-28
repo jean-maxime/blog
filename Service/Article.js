@@ -8,3 +8,6 @@ module.exports.findAll = () => {
 module.exports.findById = (idArticle) => {
     return Article.where('id', idArticle).fetch()
 };
+module.exports.deleteById = (idArticle) => {
+    return Article.where('id', idArticle).destroy();
+};

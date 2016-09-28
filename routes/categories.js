@@ -3,7 +3,7 @@ let router = express.Router();
 let Category = require('../Database/Models/Category');
 let categoryService = require('../Service/Category');
 
-/* GET users listing. */
+// GET category listing
 router.get('/', function(req, res, next) {
     categoryService.findAll()
         .then(function (categories) {
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         })
 });
 
-// GET user by id
+// GET category by id
 router.get('/:id', function (req, res, next) {
     let idCategory = req.params.id;
     categoryService.findById(idCategory)
@@ -23,6 +23,18 @@ router.get('/:id', function (req, res, next) {
         })
         .catch(function(error) {
             res.json(error)
+        })
+});
+
+// DELETE category by id
+router.delete('/:id', function (req, res, next) {
+    let idCategory = req.params.id;
+    categoryService.deleteById(idCategory)
+        .then(function() {
+            res.json(true)
+        })
+        .catch(function() {
+            res.json(false)
         })
 });
 
