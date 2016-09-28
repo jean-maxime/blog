@@ -1,15 +1,7 @@
 'use strict';
+const dbConfig = require('./dbConfig');
 
-let knex = require('knex')({
-    client: 'mysql',
-    connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'blog',
-        charset: 'utf8'
-    }
-});
+let knex = require('knex')(dbConfig);
 let Bookshelf = require('bookshelf')(knex);
 Bookshelf.plugin('registry');
 
