@@ -3,11 +3,11 @@
 const Article = require('../Database/Models/Article');
 
 module.exports.findAll = () => {
-    return Article.fetchAll()
+  return Article.fetchAll()
 };
 module.exports.findById = (idArticle) => {
-    return Article.where('id', idArticle).fetch()
+  return Article.where('id', idArticle).fetch()
 };
 module.exports.deleteById = (idArticle) => {
-    return Article.where('id', idArticle).destroy();
+  return Article.where('id', idArticle).destroy();
 };

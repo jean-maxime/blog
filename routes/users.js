@@ -18,24 +18,24 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function (req, res, next) {
   let idUser = req.params.id;
   userService.findById(idUser)
-      .then(function(user) {
-        res.json(user);
-      })
-      .catch(function(error) {
-        res.json(error)
-      })
+    .then(function(user) {
+      res.json(user);
+    })
+    .catch(function(error) {
+      res.json(error)
+    })
 });
 
 // DELETE user by id
 router.delete('/:id', function (req, res, next) {
-    let idUser = req.params.id;
-    userService.deleteById(idUser)
-        .then(function() {
-            res.json(true)
-        })
-        .catch(function() {
-            res.json(false)
-        })
+  let idUser = req.params.id;
+  userService.deleteById(idUser)
+    .then(function() {
+      res.json(true)
+    })
+    .catch(function() {
+      res.json(false)
+    })
 });
 
 module.exports = router;
