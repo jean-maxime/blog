@@ -6,7 +6,7 @@ module.exports.findAll = () => {
   return User.fetchAll()
 };
 module.exports.findById = (idUser) => {
-  return User.where('id', idUser).fetch()
+  return User.where('id', idUser).fetch();
 };
 module.exports.deleteById = (idUser) => {
   return User.where('id', idUser).destroy();
