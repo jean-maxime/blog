@@ -6,6 +6,17 @@ const tracker = mockKnex.getTracker();
 const expect  = chai.expect;
 const userService = require('../../Service/User');
 
+// data to insert in database
+const toInsert = {
+	pseudo: 'pseudoTest',
+	password: 'passwordTest',
+	mail: 'mailTest',
+	actif: 1
+};
+
+// return id from insert
+let idInsert;
+
 describe('Test Service User', () => {
 	tracker.install();
 
@@ -31,7 +42,6 @@ describe('Test Service User', () => {
 				.then((res) => {
 					const user = res.toJSON();
 
-					console.log(user);
 					expect(user).to.be.an('object');
 					expect(user).to.contain.all.keys('pseudo', 'password', 'actif');
 					expect(user).to.have.property('pseudo', 'pseudo1');
@@ -39,5 +49,24 @@ describe('Test Service User', () => {
 				.done();
 		});
 	});
+
+	describe('Function insert', () => {
+		before(() => {
+			tracker.on('query', (query) => {
+				query.response(toInsert);
+			})
+		});
+
+		it('Should return ID if success', () => {
+			return userService.insert(toInsert)
+				.then((res) => {
+					const idNewUser = res.toJSON();
+
+					expect(idNewUser).to.be.a('number');
+
+				})
+				.done();
+		})
+	})
 
 });
