@@ -27,7 +27,8 @@ module.exports.deleteById = (idUser) => {
 };
 
 module.exports.insert = (data) => {
-	return new User(data).save().then((model) => {
+	return new User(data).save()
+		.then((model) => {
 		return {
 				id: model.id,
 				response: true,
@@ -43,4 +44,20 @@ module.exports.insert = (data) => {
 				 message: err
 			 };
 		});
+};
+
+module.exports.update = (data) => {
+	return new User(data).save()
+		.then(() => {
+			return {
+				response: true,
+				message: 'Done without any error'
+			}
+		})
+		.catch((err) => {
+			return {
+				response: false,
+				message: err
+			}
+		})
 };
