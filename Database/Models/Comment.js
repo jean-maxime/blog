@@ -6,7 +6,7 @@ let Comment = Bookshelf.Model.extend({
   tableName: 'comment',
   hasTimestamps: true,
   articles: function () {
-      return this.belongsTo('Article');
+      return this.hasOne('Article');
   }
 });
 

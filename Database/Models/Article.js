@@ -6,13 +6,13 @@ let Article = Bookshelf.Model.extend({
   tableName: 'article',
   hasTimestamps: true,
   comments: function () {
-    return this.hasMany('Comment');
+    return this.belongsTo('Comment');
   },
   categories: function () {
-    return this.hasMany('Category');
+    return this.hasOne('Category');
   },
   users: function () {
-    return this.belongsTo('User');
+    return this.hasOne('User');
   }
 });
 
