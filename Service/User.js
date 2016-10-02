@@ -36,8 +36,6 @@ module.exports.insert = (data) => {
 			};
 		})
 		.catch((err) => {
-			console.log('error');
-			console.log(err);
 			return {
 			 	id: null,
 				 response: false,
