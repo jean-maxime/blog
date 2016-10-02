@@ -5,9 +5,57 @@ const Article = require('../Database/Models/Article');
 module.exports.findAll = () => {
   return Article.fetchAll()
 };
+
 module.exports.findById = (idArticle) => {
   return Article.where('id', idArticle).fetch()
 };
+
 module.exports.deleteById = (idArticle) => {
-  return Article.where('id', idArticle).destroy();
+	return Article.where('id', idArticle).destroy()
+		.then(() => {
+			return {
+				response: true,
+				message: 'Done without error'
+			}
+		})
+		.catch((err) => {
+			return {
+				response: false,
+				message: err
+			}
+		})
+};
+
+module.exports.insert = (data) => {
+	return new Article(data).save()
+		.then((model) => {
+			return {
+				id: model.id,
+				response: true,
+				message: 'Done without any error'
+			};
+		})
+		.catch((err) => {
+			return {
+				id: null,
+				response: false,
+				message: err
+			};
+		});
+};
+
+module.exports.update = (data) => {
+	return new Article(data).save()
+		.then(() => {
+			return {
+				response: true,
+				message: 'Done without any error'
+			}
+		})
+		.catch((err) => {
+			return {
+				response: false,
+				message: err
+			}
+		})
 };
