@@ -66,6 +66,24 @@ describe('Test Service User', () => {
 		});
 	});
 
+	describe('Function update', () => {
+		it('Should return message and boolean', (done) => {
+			let dataToUpdate = {
+				id: idInsert,
+				pseudo: 'pseudoXXX',
+			};
+			userService.update(dataToUpdate)
+				.then((response) => {
+					expect(response).to.be.an('object');
+					expect(response.response).to.be.a('boolean');
+					expect(response.response).to.be.true;
+					expect(response.message).to.be.a('string');
+
+					done();
+				});
+		})
+	});
+
 	describe('Function delete', () => {
 		it('Should return message and boolean', (done) => {
 			userService.deleteById(idInsert)
