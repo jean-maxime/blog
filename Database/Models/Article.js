@@ -1,11 +1,12 @@
 'use strict';
 
 let Bookshelf = require('./../init');
+require('./Comment');
 
 let Article = Bookshelf.Model.extend({
   tableName: 'article',
   hasTimestamps: true,
-  comments: function () {
+  comment: function () {
     return this.belongsTo('Comment');
   },
   categories: function () {

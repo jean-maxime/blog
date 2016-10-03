@@ -19,13 +19,13 @@ let idInsert;
 describe('Test Service Comment', () => {
 
 	describe('Function findAll', () => {
-		it('Should return 1 comment', (done) => {
+		it('Should return 2 comments', (done) => {
 			commentService.findAll()
 				.then((res) => {
 					const comments = res.toJSON();
 
 					expect(comments).to.be.an('array');
-					expect(comments).to.have.lengthOf(1);
+					expect(comments).to.have.lengthOf(2);
 					expect(comments[0]).to.have.property('author_name', 'nameTest');
 					expect(comments[0]).to.have.property('content', 'ContentTest');
 					expect(comments[0]).to.have.property('mail', 'mailTest');
@@ -98,7 +98,25 @@ describe('Test Service Comment', () => {
 					expect(response.message).to.be.a('string');
 
 					done();
-				})
+				});
+		});
+	});
+
+	describe('Function find by article id', () => {
+		it('Should return all article with id 1', (done) => {
+			commentService.findByArticleId(1)
+				.then((res) => {
+					const comments = res.toJSON();
+
+					expect(comments).to.be.an('array');
+					expect(comments).to.have.property('length', 2);
+					expect(comments[0]).to.have.property('author_name', 'nameTest');
+					expect(comments[0]).to.have.property('content', 'ContentTest');
+					expect(comments[0]).to.have.property('mail', 'mailTest');
+					expect(comments[1]).to.contain.all.keys('visible', 'content', 'mail', 'author_name');
+
+					done();
+				});
 		});
 	});
 

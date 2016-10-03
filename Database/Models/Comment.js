@@ -1,12 +1,13 @@
 'use strict';
 
 let Bookshelf = require('./../init');
+require('./Article');
 
 let Comment = Bookshelf.Model.extend({
   tableName: 'comment',
   hasTimestamps: true,
-  articles: function () {
-      return this.hasOne('Article');
+  article: function () {
+      return this.hasOne('Article', 'id');
   }
 });
 

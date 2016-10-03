@@ -10,6 +10,10 @@ module.exports.findById = (idComment) => {
   return Comment.where('id', idComment).fetch()
 };
 
+module.exports.findByArticleId = (idArticle) => {
+	return Comment.where({id_article: idArticle}).fetchAll()
+};
+
 module.exports.deleteById = (idComment) => {
 	return Comment.where('id', idComment).destroy()
 		.then(() => {
