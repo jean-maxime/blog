@@ -9,11 +9,11 @@ let Article = Bookshelf.Model.extend({
   comment: function () {
     return this.belongsTo('Comment');
   },
-  categories: function () {
-    return this.hasOne('Category');
+  category: function () {
+    return this.hasOne('Category', 'id');
   },
-  users: function () {
-    return this.hasOne('User');
+  user: function () {
+    return this.hasOne('User', 'id');
   }
 });
 

@@ -10,6 +10,12 @@ module.exports.findById = (idArticle) => {
   return Article.where('id', idArticle).fetch()
 };
 
+module.exports.findByCategoryId = (idCategory) => {
+	return Article.where('id_category', idCategory).fetchAll({
+		withRelated: ['category']
+	})
+};
+
 module.exports.deleteById = (idArticle) => {
 	return Article.where('id', idArticle).destroy()
 		.then(() => {

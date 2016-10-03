@@ -99,4 +99,21 @@ describe('Test Service Article', () => {
 		});
 	});
 
+	describe('Function findByCategoryId', () => {
+		it('Should return array corresponding articles', (done) => {
+			articleService.findByCategoryId(1)
+				.then((resp) => {
+					const articles = resp.toJSON();
+
+					expect(articles).to.be.an('array');
+					expect(articles).to.have.lengthOf(1);
+					expect(articles[0]).to.have.property('title', 'TitleTest');
+					expect(articles[0]).to.have.property('content', 'ContentTest');
+					expect(articles[0]).to.contain.all.keys('title', 'content');
+
+					done();
+				});
+		});
+	});
+
 });
