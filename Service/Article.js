@@ -11,9 +11,7 @@ module.exports.findById = (idArticle) => {
 };
 
 module.exports.findByCategoryId = (idCategory) => {
-	return Article.where('id_category', idCategory).fetchAll({
-		withRelated: ['category']
-	})
+	return Article.where('id_category', idCategory).fetchAll()
 };
 
 module.exports.deleteById = (idArticle) => {
