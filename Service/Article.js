@@ -48,8 +48,8 @@ module.exports.insert = (data) => {
 		});
 };
 
-module.exports.update = (data) => {
-	return new Article(data).save()
+module.exports.update = (id, data) => {
+	return new Article({id: id}).save(data)
 		.then(() => {
 			return {
 				response: true,
