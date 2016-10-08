@@ -73,10 +73,9 @@ describe('Test Service Comment', () => {
 	describe('Function update', () => {
 		it('Should return message and boolean', (done) => {
 			let dataToUpdate = {
-				id: idInsert,
-				content: 'contentXXX',
+				content: 'contentXXX'
 			};
-			commentService.update(dataToUpdate)
+			commentService.update(idInsert, dataToUpdate)
 				.then((response) => {
 					expect(response).to.be.an('object');
 					expect(response.response).to.be.a('boolean');

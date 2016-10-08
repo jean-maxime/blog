@@ -69,10 +69,9 @@ describe('Test Service User', () => {
 	describe('Function update', () => {
 		it('Should return message and boolean', (done) => {
 			let dataToUpdate = {
-				id: idInsert,
-				pseudo: 'pseudoXXX',
+				pseudo: 'pseudoXXX'
 			};
-			userService.update(dataToUpdate)
+			userService.update(idInsert, dataToUpdate)
 				.then((response) => {
 					expect(response).to.be.an('object');
 					expect(response.response).to.be.a('boolean');

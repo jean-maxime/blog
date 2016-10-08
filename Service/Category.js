@@ -44,8 +44,8 @@ module.exports.insert = (data) => {
 		});
 };
 
-module.exports.update = (data) => {
-	return new Category(data).save()
+module.exports.update = (id, data) => {
+	return new Category({id: id}).save(data)
 		.then(() => {
 			return {
 				response: true,

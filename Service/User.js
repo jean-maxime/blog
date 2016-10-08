@@ -44,8 +44,8 @@ module.exports.insert = (data) => {
 		});
 };
 
-module.exports.update = (data) => {
-	return new User(data).save()
+module.exports.update = (id, data) => {
+	return new User({id: id}).save(data)
 		.then(() => {
 			return {
 				response: true,

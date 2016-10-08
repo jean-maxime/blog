@@ -65,10 +65,9 @@ describe('Test Service Category', () => {
 	describe('Function update', () => {
 		it('Should return message and boolean', (done) => {
 			let dataToUpdate = {
-				id: idInsert,
-				title: 'titleTestTwice',
+				title: 'titleTestTwice'
 			};
-			categoryService.update(dataToUpdate)
+			categoryService.update(idInsert, dataToUpdate)
 				.then((response) => {
 					expect(response).to.be.an('object');
 					expect(response.response).to.be.a('boolean');
