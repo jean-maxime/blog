@@ -26,6 +26,29 @@ router.get('/:id', function (req, res, next) {
     })
 });
 
+// INSERT comment
+router.post('/', (req, res, next) => {
+	commentService.insert(req.body)
+		.then((response) => {
+			res.json(response)
+		})
+		.catch((err) => {
+			res.json(err)
+		})
+});
+
+// UPDATE comment
+router.put('/:id', (req, res, next) => {
+	let idComment = req.params.id;
+	commentService.update(idComment, req.body)
+		.then((response) => {
+			res.json(response)
+		})
+		.catch((err) => {
+			res.json(err)
+		})
+});
+
 // DELETE comment by id
 router.delete('/:id', function (req, res, next) {
   let idComment = req.params.id;

@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let articleService = require('../Service/Article');
+let commentService = require('../Service/Comment');
 
 // GET articles listing
 router.get('/', (req, res, next) => {
@@ -25,12 +26,12 @@ router.get('/:id', (req, res, next) => {
     })
 });
 
-// GET article by category id
-router.get('/category/:id', (req, res, next) => {
-	let idCategory = req.params.id;
-	articleService.findByCategoryId(idCategory)
-		.then((articles) => {
-			res.json(articles)
+// GET comment by article id
+router.get('/:id/comments', (req, res, next) => {
+	let idArticle = req.params.id;
+	commentService.findByArticleId(idArticle)
+		.then((response) => {
+			res.json(response)
 		})
 		.catch((err) => {
 			res.json(err)
